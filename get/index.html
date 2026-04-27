@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video desde cámara</title>
+</head>
+
+<body>
+
+<h2>Vista de cámara</h2>
+
+<img id="camara" src="https://post-image-j0l5.onrender.com/image" width="640">
+
+<script>
+
+function actualizarImagen() {
+
+    const img = document.getElementById("camara");
+
+    // Evita que el navegador use cache
+    img.src = "https://post-image-j0l5.onrender.com/image?t=" + new Date().getTime();
+
+}
+
+// actualizar cada 500 ms
+setInterval(actualizarImagen, 500);
+
+</script>
+
+</body>
+</html>
