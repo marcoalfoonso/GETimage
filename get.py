@@ -1,6 +1,6 @@
 import requests
 
-url = "https://tu-api.onrender.com/image"
+url =  "https://post-image-j0l5.onrender.com/image"
 
 response = requests.get(url)
 
