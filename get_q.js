@@ -26,22 +26,19 @@ client.on("error", (err) => {
 });
 
 client.on("message",(topic,message)=>{
-        const value = Number(message.toString());
-        console.log("Topic: ",topic,"Value: ",value);
+    const value = Number(message.toString());
+    console.log("Topic: ",topic,"Value: ",value);
 
-        if(topic === "q1"){
-            g1.value = value;
-            q1 = g1.value * Math.PI/180;
-        }
+    if(topic === "q1"){
+        console.log("q1 received: ", value);
+    }
 
-        if(topic === "q2"){
-            g2.value = value;
-            q2 = g2.value * Math.PI/180;
-        }
+    if(topic === "q2"){
+        console.log("q2 received: ", value);
+    }
 
-        if(topic === "q3"){
-            g3.value = value;
-            q3 = g3.value * Math.PI/180;
-        }
+    if(topic === "q3"){
+        console.log("q3 received: ", value);
+    }
 
-    });
+});
