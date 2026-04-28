@@ -82,6 +82,15 @@ document.addEventListener("DOMContentLoaded", function(){
     const grid = new THREE.GridHelper(3,8);
     scene.add(grid);
 
+    //ligths
+
+    const light1 = new THREE.DirectionalLight(0xffffff, 1);
+    light1.position.set(2,2,2);
+    scene.add(light1);
+
+    const light2 = new THREE.AmbientLight(0x404040);
+    scene.add(light2);
+
     //box geometry, material, mesh, add to scene, position
 
     const geometry = new THREE.BoxGeometry(0.1,0.1,0.1);
@@ -179,21 +188,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const j2 = createJoint(0.03, 0xffffff);
     const j3 = createJoint(0.03, 0xffffff);
 
-
-    //base
-
-    
-    /*const length = 12, width = 8;
-    const shape = new THREE.Shape();
-    shape.moveTo( 0,0 );
-    shape.lineTo( 0, width );
-    shape.lineTo( length, width );
-    shape.lineTo( length, 0 );
-    shape.lineTo( 0, 0 );
-    const geometry = new THREE.ExtrudeGeometry( shape );
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    const mesh = new THREE.Mesh( geometry, material ) ;
-    scene.add( mesh );*/
 
     //create fuction fot joint links
 
