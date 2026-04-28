@@ -30,15 +30,15 @@ client.on("message",(topic,message)=>{
     console.log("Topic: ",topic,"Value: ",value);
 
     if(topic === "q1"){
-        console.log("q1 received: ", value);
+        console.log("q1: ", value);
     }
 
     if(topic === "q2"){
-        console.log("q2 received: ", value);
+        console.log("q2: ", value);
     }
 
     if(topic === "q3"){
-        console.log("q3 received: ", value);
+        console.log("q3: ", value);
     }
 
 });
