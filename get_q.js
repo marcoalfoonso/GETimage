@@ -56,31 +56,35 @@ document.addEventListener("DOMContentLoaded", function(){
 
     });
 
-    const renderer = new THREE.WebGLRenderer();
 
-    renderer.setSize(window.innerWidth*0.40,window.innerHeight*0.65);
-
-    document.body.appendChild(renderer.domElement);
+    const container = document.getElementById("scope");
+    const renderer = new THREE.WebGLRenderer({antialias:true});
+    container.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(
         100,
-        window.innerWidth/window.innerHeight,
+        1,
         0.1,
         1000
     );
 
-
-    //axis helper, comera position, grid helper
-
-    /*const axesHelper = new THREE.AxesHelper(1.4);
-    scene.add(axesHelper);*/
-    camera.position.set(0.8,0.7,1.8);
+    camera.position.set(1,1.2,-1.3);
     camera.lookAt(0,0,0);
 
     const grid = new THREE.GridHelper(3,8);
     scene.add(grid);
+
+    function resize(){
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width,height);
+        camera.aspect = width/height;
+        camera.updateProjectionMatrix();
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
 
     //ligths
 
@@ -121,9 +125,9 @@ document.addEventListener("DOMContentLoaded", function(){
     let y1 = b1+b2+l1*Math.sin(q2);
     let z1 = -l1*Math.sin(q1)*Math.cos(q2);
 
-    let x2 = Math.cos(q1)*(l2*Math.cos(q2+q3)+l1*Math.cos(q2));
-    let y2 = b1+b2+l1*Math.sin(q2)+l2*Math.sin(q2+q3);
-    let z2 = -Math.sin(q1)*(l2*Math.cos(q2+q3)+l1*Math.cos(q2));
+    let x2 = Math.cos(q1)*(l2*Math.cos(q2-q3)+l1*Math.cos(q2));
+    let y2 = b1+b2+l1*Math.sin(q2)+l2*Math.sin(q2-q3);
+    let z2 = -Math.sin(q1)*(l2*Math.cos(q2-q3)+l1*Math.cos(q2));
 
 
     //creating vectores for points and lines
@@ -264,9 +268,9 @@ document.addEventListener("DOMContentLoaded", function(){
         y1 = b1+b2+l1*Math.sin(q2);
         z1 = -l1*Math.sin(q1)*Math.cos(q2);
 
-        x2 = Math.cos(q1)*(l2*Math.cos(q2+q3)+l1*Math.cos(q2));
-        y2 = b1+b2+l1*Math.sin(q2)+l2*Math.sin(q2+q3);
-        z2 = -Math.sin(q1)*(l2*Math.cos(q2+q3)+l1*Math.cos(q2));
+        x2 = Math.cos(q1)*(l2*Math.cos(q2-q3)+l1*Math.cos(q2));
+        y2 = b1+b2+l1*Math.sin(q2)+l2*Math.sin(q2-q3);
+        z2 = -Math.sin(q1)*(l2*Math.cos(q2-q3)+l1*Math.cos(q2));
 
         p2.set(x1,y1,z1);
         ef.set(x2,y2,z2);
