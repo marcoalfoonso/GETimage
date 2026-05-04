@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Video desde cámara</title>
+    <title>Monitor Robot</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="get_q.js"></script>
+
+    <link rel="stylesheet" href="design.css">
 </head>
 
 <body>
 
-<h2>Vista de cámara</h2>
+    <header class="header">
+        <h1>Monitor</h1>
+        <div class="status">● LIVE</div>
+    </header>
 
-<img id="camara" width="100%">
+    <div class="layout">
 
-<script>
+        <!-- Robot -->
+        <div id="scope"></div>
 
-    const ws = new WebSocket("wss://threed-model-yvro.onrender.com");
+        <!-- Cámara -->
+        <div class="video-container">
+            <h2>Vista de cámara</h2>
+            <img id="camara">
+        </div>
 
-    ws.binaryType = "blob";
+    </div>
 
-    ws.onmessage = (event) => {
-        const img = document.getElementById("camara");
-        img.src = URL.createObjectURL(event.data);
-    }
+    <script>
+        const ws = new WebSocket("wss://threed-model-yvro.onrender.com");
+        ws.binaryType = "blob";
 
-</script>
-
-<div id="scope"></div>
+        ws.onmessage = (event) => {
+            const img = document.getElementById("camara");
+            img.src = URL.createObjectURL(event.data);
+        };
+    </script>
 
 </body>
 </html>
