@@ -11,25 +11,18 @@
 
 <h2>Vista de cámara</h2>
 
-<img id="camara" src="https://post-image-j0l5.onrender.com/image" width="640">
+<img id="camara" width="100%">
 
 <script>
 
-    function actualizarImagen() {
+    const ws = new WebSocket("wss://threed-model-yvro.onrender.com");
 
+    ws.binaryType = "blob";
+
+    ws.onmessage = (event) => {
         const img = document.getElementById("camara");
-
-        img.onload = () => {
-            // cuando termina, pide la siguiente
-            setTimeout(actualizarImagen, 50); // pequeño respiro
-        };
-
-        // Evita que el navegador use cache
-        img.src = "https://post-image-j0l5.onrender.com/image?t=" + new Date().getTime();
-
+        img.src = URL.createObjectURL(event.data);
     }
-    
-    actualizarImagen();
 
 </script>
 
