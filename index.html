@@ -19,13 +19,17 @@
 
         const img = document.getElementById("camara");
 
+        img.onload = () => {
+            // cuando termina, pide la siguiente
+            setTimeout(actualizarImagen, 50); // pequeño respiro
+        };
+
         // Evita que el navegador use cache
         img.src = "https://post-image-j0l5.onrender.com/image?t=" + new Date().getTime();
 
     }
-
-    // actualizar cada 500 ms
-    setInterval(actualizarImagen, 100);
+    
+    actualizarImagen();
 
 </script>
 
